@@ -4,6 +4,10 @@
 
 > **구 트윗덱의 모든 기능은 원본 OldTweetDeck과 동일하게 그대로 동작합니다.** 컬럼 구성, 검색, DM, 예약 트윗 등 원본이 지원하는 기능 전부를 이 포크에서도 그대로 쓸 수 있습니다(자세한 사용법·FAQ·업데이트 방식은 [원본 저장소 문서](https://github.com/dimdenGD/OldTweetDeck/blob/main/docs/README_KO.md) 참고).
 
+## 이 포크에서 고친 버그
+
+- **`x.com/i/tweetdeck` 접속 시 그냥 홈(`/home`)으로 넘어가버리는 문제** — 원본의 매니페스트 V3용 `ruleset.json`에는 `content-security-policy`/`x-frame-options` 응답 헤더만 제거하도록 되어 있었는데, X가 이 주소에 `Location` 헤더(리다이렉트)를 함께 내려주는 경우 확장 스크립트가 실행되기도 전에 브라우저가 곧장 리다이렉트를 따라가버려 구 트윗덱이 전혀 뜨지 않는 문제가 있었습니다. 원본의 레거시 매니페스트 V2 스크립트(`src/background.js`, 현재 미사용)에는 이미 이 헤더도 함께 제거하는 로직이 있었던 것으로 보아 V3로 옮기며 빠진 것으로 보입니다 — `ruleset.json`에 `location` 헤더 제거를 추가해 해결했습니다.
+
 ## 크레딧 / 라이선스
 
 - 원본 프로젝트: [OldTweetDeck](https://github.com/dimdenGD/OldTweetDeck) — 제작: [dimdenGD](https://github.com/dimdenGD) (dimden.dev)
