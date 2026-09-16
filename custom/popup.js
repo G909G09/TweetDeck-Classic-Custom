@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  // content.js와 동일한 팔레트 — 팝업 스와치 미리보기용으로 여기도 하나 둔다
-  // (팝업/콘텐츠 스크립트는 별도 컨텍스트라 파일을 공유하지 않으므로 값만 맞춰둠).
+  // custom/customize.js와 동일한 팔레트 — 팝업 스와치 미리보기용으로
+  // 여기도 하나 둔다(팝업/콘텐츠 스크립트는 별도 컨텍스트라 값만 맞춰둠).
   var THEMES = {
     classic: { label: '클래식', accent: '#1da1f2', bg: '#15202b' },
     midnight: { label: '미드나잇', accent: '#8b5cf6', bg: '#0e0b1a' },

@@ -1,0 +1,98 @@
+/* ============================================================
+   커스텀 레이어 — 이 파일은 dimdenGD/OldTweetDeck(MIT License)의
+   포크에 추가된 것으로, 원본 구 트윗덱 기능에는 관여하지 않고
+   색상 테마만 덧입힌다. 실제 예전 트윗덱 화면(files/bundle.css)의
+   진짜 클래스(.app-header, .column, .column-nav, .avatar 등)를
+   기준으로 색상만 오버라이드하므로, 원본 UI는 배치 그대로 유지된다.
+   기본값(otdc-enabled 클래스가 없을 때)은 원본 그대로 아무 것도
+   바뀌지 않는다 — 값은 customize.js가 storage에서 읽어 CSS 변수로
+   주입한다.
+   ============================================================ */
+
+html.otdc-enabled {
+  --otdc-bg: #15202b;
+  --otdc-column-bg: #192734;
+  --otdc-header-bg: #1c2732;
+  --otdc-border: #38444d;
+  --otdc-accent: #1da1f2;
+  --otdc-text: #d9d9d9;
+}
+
+html.otdc-enabled body,
+html.otdc-enabled .js-app,
+html.otdc-enabled .application,
+html.otdc-enabled .app-columns,
+html.otdc-enabled .column-holder {
+  background: var(--otdc-bg) !important;
+}
+
+html.otdc-enabled .app-header {
+  background: var(--otdc-header-bg) !important;
+  border-color: var(--otdc-border) !important;
+}
+
+html.otdc-enabled .app-nav-link.is-selected,
+html.otdc-enabled .app-nav-tab.is-selected,
+html.otdc-enabled .app-nav-link:hover,
+html.otdc-enabled .app-nav-tab:hover,
+html.otdc-enabled .app-nav-tab.is-selected .app-nav-tab-text {
+  color: var(--otdc-accent) !important;
+}
+
+html.otdc-enabled .column {
+  background: var(--otdc-column-bg) !important;
+}
+html.otdc-enabled .column,
+html.otdc-enabled .column-panel {
+  border-color: var(--otdc-border) !important;
+}
+
+html.otdc-enabled .column-nav {
+  background: var(--otdc-header-bg) !important;
+  border-bottom: 2px solid var(--otdc-accent) !important;
+}
+html.otdc-enabled .column-nav .nav-item button.active {
+  color: var(--otdc-accent) !important;
+}
+
+html.otdc-enabled a,
+html.otdc-enabled .link-complex,
+html.otdc-enabled .btn-on-blue,
+html.otdc-enabled .icon-link:hover {
+  color: var(--otdc-accent) !important;
+}
+
+html.otdc-enabled ::-webkit-scrollbar-thumb {
+  background: var(--otdc-accent) !important;
+}
+
+/* ── 스티커: 팝업에서 고른 이모지를 화면 위에 자유롭게 붙여둘 수 있음 ──
+   (테마와 무관하게 항상 동작 — otdc-enabled 클래스에 안 묶여 있음) */
+.otdc-sticker {
+  position: fixed;
+  z-index: 2147483000;
+  font-size: 40px;
+  line-height: 1;
+  cursor: grab;
+  user-select: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  touch-action: none;
+}
+.otdc-sticker.otdc-dragging { cursor: grabbing; }
+.otdc-sticker .otdc-sticker-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--otdc-accent, #1da1f2);
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.otdc-sticker:hover .otdc-sticker-remove { opacity: 1; }

@@ -1,0 +1,29 @@
+{
+  "name": "oldtweetdeck",
+  "version": "0.0.0",
+  "description": "Returns old TweetDeck!",
+  "main": "pack.js",
+  "scripts": {
+    "build": "node pack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimdenGD/OldTweetDeck.git"
+  },
+  "keywords": [
+    "twitter",
+    "x",
+    "tweetdeck",
+    "extension",
+    "addon"
+  ],
+  "author": "dimden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimdenGD/OldTweetDeck/issues"
+  },
+  "homepage": "https://github.com/dimdenGD/OldTweetDeck#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.10"
+  }
+}

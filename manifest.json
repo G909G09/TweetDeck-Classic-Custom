@@ -1,29 +1,70 @@
 {
-  "manifest_version": 3,
-  "name": "트윗덱 클래식 UI",
-  "version": "1.0.0",
-  "description": "X(트위터) 화면을 예전 트윗덱(TweetDeck) 느낌의 어둡고 촘촘한 컬럼형 디자인으로 바꿔주는 확장 프로그램",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "트윗덱 클래식 UI",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
-  "permissions": ["storage"],
-  "content_scripts": [
-    {
-      "matches": ["https://twitter.com/*", "https://x.com/*", "https://mobile.twitter.com/*", "https://mobile.x.com/*"],
-      "js": ["content.js"],
-      "css": ["content.css"],
-      "run_at": "document_start"
-    }
-  ]
+    "name": "구 트윗덱 커스텀 (OldTweetDeck Custom)",
+    "description": "OldTweetDeck(dimdenGD, MIT License)의 포크: 구 트윗덱 기능은 그대로 두고 색상 테마·스티커 커스터마이징을 추가했습니다.",
+    "version": "4.4.0",
+    "manifest_version": 3,
+    "homepage_url": "https://github.com/G909G09/TweetDeck-Classic-Custom",
+    "permissions": [
+        "webNavigation",
+        "cookies",
+        "declarativeNetRequest",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "src/background3.js"
+    },
+    "host_permissions": [
+        "https://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://x.com/*",
+        "https://*.x.com/*",
+        "https://abs.twimg.com/*",
+        "https://api.twitter.com/*",
+        "https://tweetdeck.com/",
+        "https://oldtd.org/*"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["images/*", "files/*", "src/*", "solver.html", "manifest.json"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "declarative_net_request": {
+        "rule_resources" : [{
+          "id": "ruleset",
+          "enabled": true,
+          "path": "ruleset.json"
+        }]
+      },
+    "icons": {
+        "16": "/images/logo16.png",
+        "32": "/images/logo32.png",
+        "48": "/images/logo48.png",
+        "128": "/images/logo128.png"
+    },
+    "action": {
+        "default_popup": "custom/popup.html",
+        "default_title": "구 트윗덱 커스텀"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://twitter.com/i/tweetdeck", "https://x.com/i/tweetdeck", "https://x.com/i/tweetdeck?*"],
+            "js": ["src/content.js"],
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["https://twitter.com/i/tweetdeck", "https://x.com/i/tweetdeck", "https://x.com/i/tweetdeck?*"],
+            "js": ["src/destroyer.js", "src/notifications.js", "src/injection.js"],
+            "all_frames": true,
+            "run_at": "document_start",
+            "world": "MAIN"
+        },
+        {
+            "matches": ["https://twitter.com/i/tweetdeck", "https://x.com/i/tweetdeck", "https://x.com/i/tweetdeck?*"],
+            "js": ["custom/customize.js"],
+            "css": ["custom/theme.css"],
+            "run_at": "document_idle"
+        }
+    ]
 }

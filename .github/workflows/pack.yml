@@ -1,0 +1,43 @@
+name: Pack Extension
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ] 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Tree
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+
+      - name: Install ZIP
+        uses: montudor/action-zip@v1
+        
+      - name: Setup NPM packages
+        run: npm install
+
+      - name: Pack extension
+        run: npm run build
+
+      - name: Unzip extension
+        run: unzip -qq ./build/OldTweetDeckChrome.zip -d build/OldTweetDeckChrome; unzip -qq ./build/OldTweetDeckFirefox.zip -d build/OldTweetDeckFirefox
+        working-directory: ${{ github.workspace }}
+        
+      - name: Upload for Firefox
+        uses: actions/upload-artifact@v4
+        with:
+          name: OldTweetDeckFirefox
+          path: ${{ github.workspace }}/build/OldTweetDeckFirefox
+      - name: Upload for Chromium
+        uses: actions/upload-artifact@v4
+        with:
+          name: OldTweetDeckChrome
+          path: ${{ github.workspace }}/build/OldTweetDeckChrome

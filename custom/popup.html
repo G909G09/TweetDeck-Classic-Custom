@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>트윗덱 클래식 UI</title>
+<title>구 트윗덱 커스텀</title>
 <style>
   body {
     width: 280px;
@@ -14,10 +14,16 @@
   }
   h1 {
     font-size: 13px;
-    margin: 0 0 10px;
+    margin: 0 0 4px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #1da1f2;
+  }
+  p.lead {
+    font-size: 11px;
+    color: #8899a6;
+    margin: 0 0 10px;
+    line-height: 1.5;
   }
   h2 {
     font-size: 11px;
@@ -107,11 +113,12 @@
 </style>
 </head>
 <body>
-  <h1>트윗덱 클래식 UI</h1>
+  <h1>구 트윗덱 커스텀</h1>
+  <p class="lead">구 트윗덱 기능은 x.com/i/tweetdeck 접속 즉시 그대로 동작합니다. 아래는 이 포크에서 추가된 꾸미기 옵션입니다.</p>
 
   <label class="toggle">
     <input type="checkbox" id="toggle-enabled">
-    이 사이트에서 켜기
+    커스텀 색상 테마 적용
   </label>
 
   <h2>색상 테마</h2>
@@ -124,15 +131,14 @@
 
   <h2>스티커</h2>
   <div class="sticker-row" id="sticker-row"></div>
-  <p class="hint">클릭하면 현재 페이지 화면 위에 스티커가 붙습니다. 화면에서 직접 드래그로 옮기거나, 스티커에 마우스를 올려 ✕로 지울 수 있어요.</p>
+  <p class="hint">클릭하면 지금 보고 있는 화면 위에 스티커가 붙습니다. 드래그로 옮기거나, 마우스를 올려 ✕로 지울 수 있어요.</p>
   <button type="button" class="ghost-btn" id="stickers-clear">스티커 전체 지우기</button>
 
   <footer>
-    "구 트윗덱" 그 자체를 그대로 쓰고 싶다면 실제 예전 트윗덱 웹앱을 복원해주는
+    이 확장은 실제 구 트윗덱 웹앱을 그대로 복원하는
     <a href="https://github.com/dimdenGD/OldTweetDeck" target="_blank" rel="noopener">OldTweetDeck</a>
-    (dimdenGD, MIT License)을 추천합니다. 이 확장은 그 프로젝트에서 영감을 받아,
-    평소 쓰는 X 타임라인 화면에 트윗덱 감성의 배색·레이아웃과 테마/스티커 커스터마이징을
-    더한 것으로, OldTweetDeck과는 별개의 프로젝트입니다.
+    (dimdenGD, MIT License)의 포크입니다. 구 트윗덱의 모든 기능은 원본과 동일하게 동작하며,
+    여기 있는 색상 테마·스티커만 이 포크에서 추가된 것입니다.
   </footer>
 
   <script src="popup.js"></script>

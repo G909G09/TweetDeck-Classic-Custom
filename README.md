@@ -1,25 +1,23 @@
-# 트윗덱 클래식 UI (TweetDeck Classic UI)
+# 구 트윗덱 커스텀 (OldTweetDeck Custom)
 
-X(트위터) 화면을 예전 트윗덱(TweetDeck)의 어둡고 촘촘한 컬럼형 디자인으로 바꿔주는 크롬/엣지 확장 프로그램입니다. 기본 배색 그대로 쓰거나, 색상 테마와 스티커로 자유롭게 꾸밀 수 있습니다.
+이 저장소는 [dimdenGD/OldTweetDeck](https://github.com/dimdenGD/OldTweetDeck) (MIT License)의 **포크**입니다. `x.com/i/tweetdeck`에서 예전 트윗덱(TweetDeck) 웹앱을 실제로 그대로 복원해 동작시키는 원본 코드를 손대지 않고 그대로 가져왔고, 여기에 색상 테마와 스티커 같은 개인화 기능만 추가했습니다.
 
-## 참고 프로젝트 및 크레딧
+> **구 트윗덱의 모든 기능은 원본 OldTweetDeck과 동일하게 그대로 동작합니다.** 컬럼 구성, 검색, DM, 예약 트윗 등 원본이 지원하는 기능 전부를 이 포크에서도 그대로 쓸 수 있습니다(자세한 사용법·FAQ·업데이트 방식은 [원본 저장소 문서](https://github.com/dimdenGD/OldTweetDeck/blob/main/docs/README_KO.md) 참고).
 
-이 확장 프로그램은 [OldTweetDeck](https://github.com/dimdenGD/OldTweetDeck) (제작: [dimdenGD](https://github.com/dimdenGD), MIT License)에서 영감을 받아 만들었습니다. OldTweetDeck은 `x.com/i/tweetdeck`에서 **실제 예전 트윗덱 웹앱을 그대로 복원**해 동작시키는 훨씬 강력하고 정교한 프로젝트입니다 — 진짜 그 시절 트윗덱을 그대로 쓰고 싶다면 OldTweetDeck 설치를 추천합니다.
+## 크레딧 / 라이선스
 
-이 저장소(트윗덱 클래식 UI)는 그와는 별개의 프로젝트로, 평소 쓰는 X 메인 타임라인 화면에 CSS로 트윗덱 감성의 배색·레이아웃만 입히고 여기에 색상 테마·스티커 같은 개인화 기능을 더한, 더 가볍고 목적이 다른 도구입니다. OldTweetDeck의 소스 코드를 직접 가져다 쓰지는 않았습니다.
+- 원본 프로젝트: [OldTweetDeck](https://github.com/dimdenGD/OldTweetDeck) — 제작: [dimdenGD](https://github.com/dimdenGD) (dimden.dev)
+- 라이선스: MIT License (원본 `LICENSE` 파일을 그대로 포함하고 있습니다)
+- `src/`, `files/`, `images/`, `manifest.json`(커스텀 레이어 추가분 제외), `ruleset.json`, `pack.js`는 원본 그대로이며, 이 포크가 직접 작성한 코드는 `custom/` 폴더뿐입니다.
 
-## 기능
+## 이 포크에서 추가된 것 (`custom/`)
 
-- 어두운 네이비 배경 + 트윗덱 특유의 파란색 포인트 컬러로 전체 배색 변경(기본 "클래식" 테마)
-- **색상 테마 5종**(클래식/미드나잇/포레스트/선셋/페이퍼(라이트)) 중 선택, 강조색만 따로 직접 고르는 컬러 피커도 지원
-- 타임라인을 고정 폭의 좁은 "컬럼"처럼 보이도록 좌우 테두리를 두르고, 상단에 트윗덱 스타일 컬럼 헤더(제목 + 새로고침 버튼)를 삽입
-- 트윗 한 칸의 여백·글자 크기를 줄이고 트윗 사이 구분선을 뚜렷하게 해 더 많은 트윗이 한 화면에 보이도록 함
-- 프로필 사진을 원형 대신 트윗덱처럼 각진 사각형으로 표시
-- 우측 추천/트렌드 사이드바 등 트윗덱에 없던 요소를 감춰 타임라인 컬럼에 집중
-- **스티커**: 팝업에서 이모지 스티커를 클릭하면 화면 위 원하는 곳에 붙일 수 있고, 드래그로 위치를 옮기거나 ✕로 지울 수 있음(위치는 `chrome.storage.sync`에 저장되어 로그인된 크롬 계정 간 동기화됨)
-- 툴바 아이콘 팝업에서 켬/끔 토글
+원본 기능에는 전혀 관여하지 않는 별도 레이어로, 화면 위에 색상만 덧입히고 스티커를 얹습니다.
 
-X는 클래스명이 자주 바뀌는 SPA라 `data-testid` 속성처럼 비교적 안정적인 값을 기준으로 스타일을 입힙니다. X가 마크업을 크게 바꾸면 일부 스타일이 어긋날 수 있습니다. 트윗덱처럼 여러 컬럼을 동시에 띄우고 API로 실시간 갱신하는 기능이 아니라, **화면을 트윗덱 느낌으로 다시 꾸며주는 시각적 확장**입니다.
+- **색상 테마 5종**(클래식/미드나잇/포레스트/선셋/페이퍼(라이트)) — 툴바 아이콘 팝업에서 선택
+- **강조색 직접 지정** — 컬러 피커로 원하는 색을 바로 지정
+- **스티커** — 팝업에서 이모지를 클릭하면 화면 위에 붙고, 드래그로 위치를 옮기거나 ✕로 지울 수 있음(위치는 `chrome.storage.sync`에 저장)
+- 테마 색상은 `.app-header`, `.column`, `.column-nav`, `.app-nav-link` 등 구 트윗덱의 실제 CSS 클래스를 기준으로 적용됩니다(원본 `files/bundle.css`는 수정하지 않고, 그 위에 별도 스타일시트로 덮어씀)
 
 ## 설치 (개발자 모드로 압축해제된 확장 프로그램 로드)
 
@@ -27,20 +25,26 @@ X는 클래스명이 자주 바뀌는 SPA라 `data-testid` 속성처럼 비교�
 2. Chrome/Edge에서 `chrome://extensions` (엣지는 `edge://extensions`) 접속
 3. 우측 상단 "개발자 모드" 활성화
 4. "압축해제된 확장 프로그램을 로드합니다" 클릭 후 이 저장소 폴더 선택
-5. x.com 또는 twitter.com을 열거나 새로고침하면 바로 적용됩니다
+5. `https://x.com/i/tweetdeck` 접속 — 구 트윗덱이 뜨고, 위에 색상 테마·스티커가 함께 적용됩니다
+6. 툴바의 확장 프로그램 아이콘을 눌러 테마·스티커를 바꿀 수 있습니다
 
 ## 폴더 구조
 
 ```
-manifest.json     크롬 확장 프로그램 매니페스트 (Manifest V3)
-content.css       트윗덱 스타일 배색·레이아웃 오버라이드, 스티커 스타일
-content.js        컬럼 헤더 삽입 + 테마/켬끔 상태 반영 + 스티커 렌더링·드래그
-popup.html/js     툴바 아이콘 팝업 — 켬/끔 토글, 테마 선택, 강조색 피커, 스티커 팔레트
-icons/            확장 프로그램 아이콘
+manifest.json      확장 프로그램 매니페스트 (Manifest V3) — action/커스텀 content_script만 추가, 나머지는 원본 그대로
+src/                원본 OldTweetDeck 핵심 로직(요청 가로채기·인증·알림 등) — 수정 없음
+files/              원본이 보관해둔 예전 트윗덱 웹앱 아카이브(bundle.js/css 등) — 수정 없음
+images/             원본 아이콘 — 수정 없음
+ruleset.json        원본 declarativeNetRequest 규칙 — 수정 없음
+custom/             ★ 이 포크에서 추가한 커스터마이징 레이어
+  theme.css           색상 테마 CSS 변수 + 스티커 스타일
+  customize.js        테마/스티커 상태를 storage에서 읽어 반영 (content script)
+  popup.html/js       툴바 아이콘 팝업 — 테마 선택, 강조색 피커, 스티커 팔레트
+LICENSE             원본 MIT 라이선스 (그대로 유지)
 ```
 
 ## 동작 원리
 
-- `content.js`가 `chrome.storage.sync`에서 켬/끔·테마·강조색·스티커 목록을 읽어 `<html>`에 `tdc-enabled` 클래스와 `--tdc-*` CSS 변수를 설정하고, `content.css`는 이 클래스·변수를 기준으로 `data-testid="primaryColumn"`, `data-testid="tweet"` 등 X의 안정적인 속성에 배색·여백을 덮어씁니다.
-- X는 페이지 전환 없이 화면이 바뀌는 SPA이므로 `MutationObserver`로 타임라인이 다시 그려질 때마다 컬럼 헤더가 사라지지 않았는지 확인해 다시 삽입합니다.
-- 스티커는 화면에 고정된 레이어(`#tdc-sticker-layer`)에 이모지 `div`로 그려지며, `pointerdown`/`pointermove`로 직접 구현한 드래그로 위치를 옮기고 그 결과(`x`/`y`는 뷰포트 비율 `vw`/`vh`)를 `chrome.storage.sync`에 저장해 다음에 열어도 유지됩니다.
+- 구 트윗덱 자체의 복원 방식(요청 가로채기로 아카이브된 웹앱을 서빙하고, 인증 토큰을 가로채 현재 X API와 통신)은 원본 OldTweetDeck의 `src/` 코드를 그대로 사용합니다.
+- `custom/customize.js`는 같은 페이지(`x.com/i/tweetdeck`)에 별도 content script로 얹혀서 `chrome.storage.sync`의 테마·스티커 값을 읽어 `<html>`에 `otdc-enabled` 클래스와 `--otdc-*` CSS 변수를 설정하고, `custom/theme.css`가 이 값을 기준으로 원본 UI의 배경·강조색만 덮어씁니다.
+- 스티커는 화면에 고정된 레이어(`#otdc-sticker-layer`)에 이모지 `div`로 그려지며, `pointerdown`/`pointermove`로 드래그해 옮긴 위치(`vw`/`vh` 비율)를 `chrome.storage.sync`에 저장해 다음에 열어도 유지됩니다.
