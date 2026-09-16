@@ -103,3 +103,33 @@ html.tdc-enabled a[role="link"]:hover,
 html.tdc-enabled [data-testid="tweetTextarea_0"] {
   color: var(--tdc-accent) !important;
 }
+
+/* ── 스티커: 팝업에서 고른 이모지를 화면 위에 자유롭게 붙여둘 수 있음 ── */
+.tdc-sticker {
+  position: fixed;
+  z-index: 2147483000;
+  font-size: 40px;
+  line-height: 1;
+  cursor: grab;
+  user-select: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  touch-action: none;
+}
+.tdc-sticker.tdc-dragging { cursor: grabbing; }
+.tdc-sticker .tdc-sticker-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--tdc-accent, #1da1f2);
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.tdc-sticker:hover .tdc-sticker-remove { opacity: 1; }

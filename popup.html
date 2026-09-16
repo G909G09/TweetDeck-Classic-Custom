@@ -2,10 +2,10 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>TweetDeck Classic UI</title>
+<title>트윗덱 클래식 UI</title>
 <style>
   body {
-    width: 240px;
+    width: 280px;
     margin: 0;
     padding: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, "Malgun Gothic", sans-serif;
@@ -19,28 +19,122 @@
     text-transform: uppercase;
     color: #1da1f2;
   }
-  label {
+  h2 {
+    font-size: 11px;
+    margin: 16px 0 6px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #8899a6;
+  }
+  label.toggle {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 13px;
     cursor: pointer;
   }
-  p {
+  .theme-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .theme-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .theme-swatch.active { border-color: #fff; }
+  .accent-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .accent-row input[type="color"] {
+    width: 28px;
+    height: 22px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .sticker-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .sticker-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+    background: #1c2732;
+    border: 1px solid #38444d;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .sticker-btn:hover { border-color: #1da1f2; }
+  .ghost-btn {
+    margin-top: 8px;
+    font-size: 11px;
+    background: none;
+    border: 1px solid #38444d;
+    color: #8899a6;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+  .ghost-btn:hover { color: #d9d9d9; border-color: #1da1f2; }
+  p.hint {
     font-size: 11px;
     color: #8899a6;
     line-height: 1.5;
-    margin: 10px 0 0;
+    margin: 6px 0 0;
   }
+  footer {
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px solid #2c3640;
+    font-size: 10.5px;
+    color: #6b7885;
+    line-height: 1.6;
+  }
+  footer a { color: #1da1f2; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-  <h1>TweetDeck Classic UI</h1>
-  <label>
+  <h1>트윗덱 클래식 UI</h1>
+
+  <label class="toggle">
     <input type="checkbox" id="toggle-enabled">
     이 사이트에서 켜기
   </label>
-  <p>x.com / twitter.com 화면을 예전 트윗덱처럼 어둡고 촘촘한 컬럼형 디자인으로 바꿉니다. 새로고침하면 바로 반영됩니다.</p>
+
+  <h2>색상 테마</h2>
+  <div class="theme-row" id="theme-row"></div>
+  <div class="accent-row">
+    <input type="color" id="accent-picker">
+    <span>강조색 직접 고르기</span>
+    <button type="button" class="ghost-btn" id="accent-reset" style="margin-top:0;">초기화</button>
+  </div>
+
+  <h2>스티커</h2>
+  <div class="sticker-row" id="sticker-row"></div>
+  <p class="hint">클릭하면 현재 페이지 화면 위에 스티커가 붙습니다. 화면에서 직접 드래그로 옮기거나, 스티커에 마우스를 올려 ✕로 지울 수 있어요.</p>
+  <button type="button" class="ghost-btn" id="stickers-clear">스티커 전체 지우기</button>
+
+  <footer>
+    "구 트윗덱" 그 자체를 그대로 쓰고 싶다면 실제 예전 트윗덱 웹앱을 복원해주는
+    <a href="https://github.com/dimdenGD/OldTweetDeck" target="_blank" rel="noopener">OldTweetDeck</a>
+    (dimdenGD, MIT License)을 추천합니다. 이 확장은 그 프로젝트에서 영감을 받아,
+    평소 쓰는 X 타임라인 화면에 트윗덱 감성의 배색·레이아웃과 테마/스티커 커스터마이징을
+    더한 것으로, OldTweetDeck과는 별개의 프로젝트입니다.
+  </footer>
+
+  <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>
