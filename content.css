@@ -1,0 +1,105 @@
+/* TweetDeck Classic UI — X(트위터)를 예전 트윗덱 느낌의 어둡고 촘촘한
+   컬럼형 디자인으로 바꿔주는 스타일시트. 확장이 꺼져 있으면(<html> 에
+   tdc-enabled 클래스가 없으면) 아무 것도 적용되지 않는다. */
+
+html.tdc-enabled {
+  --tdc-bg: #15202b;
+  --tdc-column-bg: #192734;
+  --tdc-header-bg: #1c2732;
+  --tdc-border: #38444d;
+  --tdc-accent: #1da1f2;
+  --tdc-text: #d9d9d9;
+  --tdc-text-dim: #8899a6;
+  color-scheme: dark;
+}
+
+html.tdc-enabled body {
+  background: var(--tdc-bg) !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Malgun Gothic", sans-serif !important;
+}
+
+/* 중앙 타임라인을 고정 폭의 "컬럼"처럼 보이게 함 */
+html.tdc-enabled [data-testid="primaryColumn"] {
+  max-width: 520px !important;
+  background: var(--tdc-column-bg) !important;
+  border-left: 1px solid var(--tdc-border) !important;
+  border-right: 1px solid var(--tdc-border) !important;
+}
+
+/* 트윗덱 컬럼 헤더(제목 + 새로고침) — content.js가 이 안에 삽입 */
+.tdc-column-header {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--tdc-header-bg);
+  border-bottom: 2px solid var(--tdc-accent);
+  color: var(--tdc-text);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.tdc-column-header .tdc-dot {
+  width: 8px; height: 8px; border-radius: 1px;
+  background: var(--tdc-accent);
+  flex: 0 0 auto;
+}
+.tdc-column-header button {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--tdc-border);
+  color: var(--tdc-text-dim);
+  border-radius: 2px;
+  font-size: 11px;
+  padding: 3px 8px;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+.tdc-column-header button:hover { color: var(--tdc-text); border-color: var(--tdc-accent); }
+
+/* 트윗 한 칸을 촘촘하게: 여백을 줄이고 각 트윗 사이에 뚜렷한 구분선을 둠 */
+html.tdc-enabled [data-testid="tweet"] {
+  background: var(--tdc-column-bg) !important;
+  border-bottom: 1px solid var(--tdc-border) !important;
+  padding: 6px 10px !important;
+}
+html.tdc-enabled [data-testid="tweet"] [data-testid="tweetText"],
+html.tdc-enabled [data-testid="tweet"] span {
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+/* 트윗덱은 프로필 사진이 각진 사각형이었음 */
+html.tdc-enabled [data-testid="Tweet-User-Avatar"] img,
+html.tdc-enabled [data-testid="UserAvatar-Container-unknown"] img {
+  border-radius: 3px !important;
+}
+
+/* 리트윗/좋아요 등 액션 바를 더 작고 촘촘하게 */
+html.tdc-enabled [data-testid="tweet"] [role="group"] {
+  transform: scale(0.9);
+  transform-origin: left center;
+}
+
+/* 우측 추천/트렌드 사이드바, 상단 탐색/프리미엄 탭 등은 트윗덱에 없던
+   군더더기이므로 감춰서 컬럼 하나에 집중하게 함 */
+html.tdc-enabled [data-testid="sidebarColumn"] {
+  display: none !important;
+}
+html.tdc-enabled [data-testid="primaryColumn"] [role="tablist"] {
+  background: var(--tdc-header-bg) !important;
+  border-bottom: 1px solid var(--tdc-border) !important;
+}
+
+/* 버튼/링크 강조색을 트윗덱 블루로 통일 */
+html.tdc-enabled a[role="link"]:hover,
+html.tdc-enabled [data-testid="tweetTextarea_0"] {
+  color: var(--tdc-accent) !important;
+}
