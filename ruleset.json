@@ -12,6 +12,10 @@
                 {
                     "header": "x-frame-options",
                     "operation": "remove"
+                },
+                {
+                    "header": "location",
+                    "operation": "remove"
                 }
             ]
         },
@@ -32,6 +36,10 @@
                 },
                 {
                     "header": "x-frame-options",
+                    "operation": "remove"
+                },
+                {
+                    "header": "location",
                     "operation": "remove"
                 }
             ]
