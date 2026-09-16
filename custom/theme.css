@@ -1,12 +1,12 @@
 /* ============================================================
    커스텀 레이어 — 이 파일은 dimdenGD/OldTweetDeck(MIT License)의
    포크에 추가된 것으로, 원본 구 트윗덱 기능에는 관여하지 않고
-   색상 테마만 덧입힌다. 실제 예전 트윗덱 화면(files/bundle.css)의
-   진짜 클래스(.app-header, .column, .column-nav, .avatar 등)를
-   기준으로 색상만 오버라이드하므로, 원본 UI는 배치 그대로 유지된다.
-   기본값(otdc-enabled 클래스가 없을 때)은 원본 그대로 아무 것도
-   바뀌지 않는다 — 값은 customize.js가 storage에서 읽어 CSS 변수로
-   주입한다.
+   화면 위에 색상·모양만 덧입힌다. 실제 예전 트윗덱 화면
+   (files/bundle.css)의 진짜 클래스(.app-header, .column,
+   .column-nav 등)를 기준으로 오버라이드하므로, 원본 UI는 배치
+   그대로 유지된다. 기본값(otdc-enabled 클래스가 없을 때)은 원본
+   그대로 아무 것도 바뀌지 않는다 — 값은 customize.js가 storage에서
+   읽어 CSS 변수로 주입한다.
    ============================================================ */
 
 html.otdc-enabled {
@@ -16,6 +16,14 @@ html.otdc-enabled {
   --otdc-border: #38444d;
   --otdc-accent: #1da1f2;
   --otdc-text: #d9d9d9;
+  /* customize.js가 hex를 "r,g,b"로 변환해 채워줌 — 리퀴드 글래스의
+     반투명 배경(rgba)을 만들 때만 쓰인다. */
+  --otdc-bg-rgb: 21, 32, 43;
+  --otdc-column-bg-rgb: 25, 39, 52;
+  --otdc-header-bg-rgb: 28, 39, 50;
+  --otdc-accent-rgb: 29, 161, 242;
+  --otdc-radius: 8px;
+  --otdc-column-width: 310px;
 }
 
 html.otdc-enabled body,
@@ -41,6 +49,8 @@ html.otdc-enabled .app-nav-tab.is-selected .app-nav-tab-text {
 
 html.otdc-enabled .column {
   background: var(--otdc-column-bg) !important;
+  width: var(--otdc-column-width) !important;
+  border-radius: var(--otdc-radius) !important;
 }
 html.otdc-enabled .column,
 html.otdc-enabled .column-panel {
@@ -66,33 +76,112 @@ html.otdc-enabled ::-webkit-scrollbar-thumb {
   background: var(--otdc-accent) !important;
 }
 
-/* ── 스티커: 팝업에서 고른 이모지를 화면 위에 자유롭게 붙여둘 수 있음 ──
-   (테마와 무관하게 항상 동작 — otdc-enabled 클래스에 안 묶여 있음) */
+html.otdc-enabled .Drawer,
+html.otdc-enabled .drawer,
+html.otdc-enabled .compose-panel {
+  background: var(--otdc-header-bg) !important;
+  border-radius: var(--otdc-radius) !important;
+}
+
+/* ============================================================
+   리퀴드 글래스 모드 — Apple의 "Liquid Glass" 디자인 언어에서
+   영감을 받은 반투명 유리 느낌. otdc-glass 클래스가 있을 때만
+   추가로 적용되며, 위 색상은 그대로 재사용해 반투명하게 만든다.
+   ============================================================ */
+html.otdc-glass body {
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(var(--otdc-accent-rgb), 0.25),
+    transparent 45%
+  ), radial-gradient(
+    circle at 80% 70%,
+    rgba(var(--otdc-accent-rgb), 0.15),
+    transparent 50%
+  ), var(--otdc-bg) !important;
+  background-attachment: fixed !important;
+}
+
+html.otdc-glass .app-header,
+html.otdc-glass .column,
+html.otdc-glass .Drawer,
+html.otdc-glass .drawer,
+html.otdc-glass .compose-panel,
+html.otdc-glass .column-nav {
+  background: rgba(var(--otdc-column-bg-rgb), 0.55) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: calc(var(--otdc-radius) + 6px) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+html.otdc-glass .app-header {
+  background: rgba(var(--otdc-header-bg-rgb), 0.55) !important;
+}
+html.otdc-glass .column-nav {
+  background: rgba(var(--otdc-header-bg-rgb), 0.65) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+html.otdc-glass .column {
+  margin: 0 10px 0 0 !important;
+}
+html.otdc-glass .chirp-container,
+html.otdc-glass .tweet {
+  background: transparent !important;
+}
+
+/* ── 스티커: 팝업에서 이모지를 고르거나 컴퓨터에서 이미지를 올려
+   화면 위에 자유롭게 붙여둘 수 있음(테마·글래스 모드와 무관하게
+   항상 동작 — otdc-enabled 클래스에 안 묶여 있음) */
 .otdc-sticker {
   position: fixed;
   z-index: 2147483000;
-  font-size: 40px;
   line-height: 1;
   cursor: grab;
   user-select: none;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
   touch-action: none;
 }
 .otdc-sticker.otdc-dragging { cursor: grabbing; }
+.otdc-sticker.otdc-sticker-emoji {
+  font-size: var(--otdc-sticker-size, 60px);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+}
+.otdc-sticker.otdc-sticker-image img {
+  display: block;
+  width: var(--otdc-sticker-size, 100px);
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
 .otdc-sticker .otdc-sticker-remove {
   position: absolute;
   top: -8px;
   right: -8px;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--otdc-accent, #1da1f2);
   color: #fff;
-  font-size: 10px;
-  line-height: 16px;
+  font-size: 11px;
+  line-height: 18px;
   text-align: center;
   opacity: 0;
   transition: opacity 0.15s;
   cursor: pointer;
 }
-.otdc-sticker:hover .otdc-sticker-remove { opacity: 1; }
+.otdc-sticker .otdc-sticker-resize {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #fff;
+  border: 2px solid var(--otdc-accent, #1da1f2);
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: nwse-resize;
+}
+.otdc-sticker:hover .otdc-sticker-remove,
+.otdc-sticker:hover .otdc-sticker-resize { opacity: 1; }

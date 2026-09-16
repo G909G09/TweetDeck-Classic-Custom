@@ -1,6 +1,6 @@
 {
     "name": "구 트윗덱 커스텀 (OldTweetDeck Custom)",
-    "description": "OldTweetDeck(dimdenGD, MIT License)의 포크: 구 트윗덱 기능은 그대로 두고 색상 테마·스티커 커스터마이징을 추가했습니다.",
+    "description": "OldTweetDeck(dimdenGD, MIT License)의 포크: 구 트윗덱 기능은 그대로 두고 색상·모양 직접 커스터마이징, 리퀴드 글래스 모드, 직접 올리는 이미지 스티커를 추가했습니다.",
     "version": "4.4.0",
     "manifest_version": 3,
     "homepage_url": "https://github.com/G909G09/TweetDeck-Classic-Custom",
@@ -8,7 +8,8 @@
         "webNavigation",
         "cookies",
         "declarativeNetRequest",
-        "storage"
+        "storage",
+        "unlimitedStorage"
     ],
     "background": {
         "service_worker": "src/background3.js"
